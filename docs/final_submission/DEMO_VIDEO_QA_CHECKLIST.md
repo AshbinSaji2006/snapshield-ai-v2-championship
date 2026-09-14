@@ -1,0 +1,22 @@
+# Demo Video QA Checklist
+
+- [ ] Final export is 1920 × 1080, 16:9, and plays from start to finish.
+- [ ] Duration matches the logged-in portal limit; otherwise use the prepared 3:35 cut.
+- [ ] No private desktop data, notification, email, username, browser profile, or personal tab is visible.
+- [ ] Cursor movement is slow, readable, and never covers important text.
+- [ ] No excessive waiting, repeated click, loading state, or broken UI appears.
+- [ ] No debug terminal or developer tool is shown unless deliberately explained.
+- [ ] Narration is understandable, level, and free of clipping or distracting noise.
+- [ ] Application text, captions, and metrics remain readable on a 1080p display.
+- [ ] Legitimate, phishing, OCR, QR, PII, and Runtime scenes show real application states.
+- [ ] URLs are described as parsed/decoded and never opened.
+- [ ] 98.17% is explicitly scoped to the deduplicated UCI SMS Spam Collection held-out test set.
+- [ ] The classifier is described as one signal in the multimodal pipeline.
+- [ ] `CPUExecutionProvider` is visible or spoken before the Snapdragon deployment path.
+- [ ] No line claims Snapdragon NPU verification, acceleration, validation, power, or latency.
+- [ ] QNN/Snapdragon NPU hardware validation is clearly marked pending.
+- [ ] Opening identifies the privacy/security problem within 15 seconds.
+- [ ] Ending is clean, memorable, and held for at least two seconds.
+- [ ] Music, if any, is properly licensed and does not compete with narration.
+- [ ] The exported filename and video link contain no personal or temporary data.
+- [ ] Final MP4 SHA-256 is added only after the file is frozen.

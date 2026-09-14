@@ -1,0 +1,46 @@
+{
+  "verified": true,
+  "opset": 17,
+  "ir_version": 10,
+  "input": {
+    "name": "features",
+    "dtype": "float32",
+    "shape": [
+      "batch",
+      10264
+    ]
+  },
+  "output": {
+    "name": "probability",
+    "dtype": "float32",
+    "shape": [
+      "batch",
+      1
+    ]
+  },
+  "operators": [
+    "MatMul",
+    "Add",
+    "Sigmoid"
+  ],
+  "samples_compared": 766,
+  "comparison_set": "complete untouched held-out test split",
+  "max_absolute_difference": 9.242706033862902e-08,
+  "mean_absolute_difference": 2.2692484376176002e-08,
+  "class_agreement_at_0_5": 1.0,
+  "onnx_size_bytes": 41447,
+  "runtime": "1.30.0",
+  "provider": "CPUExecutionProvider",
+  "qdq": {
+    "path": "text_classifier.qdq.onnx",
+    "size_bytes": 11733,
+    "format": "QDQ",
+    "activation_type": "QUInt8",
+    "weight_type": "QInt8",
+    "calibration_split": "first 300 validation records; no test records",
+    "max_absolute_difference_vs_fp32": 0.11939746141433716,
+    "mean_absolute_difference_vs_fp32": 0.0008152337977662683,
+    "class_agreement_at_0_5": 0.9973890339425587
+  },
+  "qnn_note": "QDQ deployment candidate uses QuantizeLinear/DequantizeLinear around MatMul. Full HTP assignment must be verified with CPU fallback disabled on target hardware."
+}

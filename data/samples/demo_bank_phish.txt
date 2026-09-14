@@ -1,0 +1,1 @@
+SECURITY ALERT: Your bank account has been temporarily suspended. Verify your password and OTP immediately at http://paypa1-secure.example/login to avoid closure.

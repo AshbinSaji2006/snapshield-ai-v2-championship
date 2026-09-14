@@ -1,0 +1,54 @@
+{
+  "02_legitimate_analysis.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "03_phishing_analysis.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "04_multimodal_screenshot_analysis.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "05_qr_analysis.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "06_pii_redaction.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "07_incident_analytics.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "08_runtime_benchmarks.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "01_snapshield_dashboard.png": {
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8765",
+    "captured_from_real_application": true
+  },
+  "runtime": {
+    "selected_provider": "CPUExecutionProvider",
+    "snapdragon_npu_verified": false
+  }
+}

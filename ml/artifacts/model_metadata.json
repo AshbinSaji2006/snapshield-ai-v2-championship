@@ -1,0 +1,88 @@
+{
+  "model_name": "SnapShield UCI SMS Word TF-IDF Logistic Regression",
+  "version": "2.0.0",
+  "selected_candidate": "word_tfidf_logistic",
+  "selection_policy": "Recall-weighted validation score; deployable logistic model chosen when within 0.02 of best candidate",
+  "dataset_sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+  "features": 10264,
+  "preprocessing": {
+    "analyzer": "word",
+    "ngram_range": [
+      1,
+      2
+    ],
+    "lowercase": true
+  },
+  "splits": {
+    "train": {
+      "rows": 3573,
+      "class_distribution": {
+        "ham": 3156,
+        "spam": 417
+      }
+    },
+    "validation": {
+      "rows": 766,
+      "class_distribution": {
+        "ham": 676,
+        "spam": 90
+      }
+    },
+    "test": {
+      "rows": 766,
+      "class_distribution": {
+        "ham": 676,
+        "spam": 90
+      }
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.9817232375979112,
+    "precision": 0.975,
+    "recall": 0.8666666666666667,
+    "f1": 0.9176470588235294,
+    "macro_f1": 0.9536840286775503,
+    "weighted_f1": 0.9812527810724019,
+    "false_positive_rate": 0.0029585798816568047,
+    "false_negative_rate": 0.13333333333333333,
+    "roc_auc": 0.9928336620644314,
+    "pr_auc_average_precision": 0.9722177511413166,
+    "confusion_matrix": [
+      [
+        674,
+        2
+      ],
+      [
+        12,
+        78
+      ]
+    ],
+    "class_metrics": {
+      "ham": {
+        "precision": 0.9825072886297376,
+        "recall": 0.9970414201183432,
+        "f1-score": 0.9897209985315712,
+        "support": 676.0
+      },
+      "spam": {
+        "precision": 0.975,
+        "recall": 0.8666666666666667,
+        "f1-score": 0.9176470588235294,
+        "support": 90.0
+      },
+      "accuracy": 0.9817232375979112,
+      "macro avg": {
+        "precision": 0.9787536443148688,
+        "recall": 0.9318540433925049,
+        "f1-score": 0.9536840286775503,
+        "support": 766.0
+      },
+      "weighted avg": {
+        "precision": 0.9816252312189329,
+        "recall": 0.9817232375979112,
+        "f1-score": 0.9812527810724019,
+        "support": 766.0
+      }
+    }
+  }
+}

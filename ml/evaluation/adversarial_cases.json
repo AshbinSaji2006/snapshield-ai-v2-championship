@@ -1,0 +1,20 @@
+[
+  {"id":"benign_meeting","label":0,"text":"The university project review is Tuesday at 2 PM in Lab 4. Please bring the architecture notes.","expected_max":24},
+  {"id":"benign_bank_statement","label":0,"text":"Your monthly SBI statement is ready in the official app. You can also visit https://www.sbi.co.in/ for general information.","expected_max":24},
+  {"id":"benign_password_reset","label":0,"text":"You requested a Microsoft password reset. Continue from the notification in your official account at https://account.microsoft.com/security or ignore this email.","expected_max":49},
+  {"id":"benign_marketing","label":0,"text":"Our weekend sale offers 20 percent off notebooks. Unsubscribe from the newsletter in preferences.","expected_max":24},
+  {"id":"benign_urgent_meeting","label":0,"text":"Urgent schedule update: today's lecture begins at 11 AM instead of noon.","expected_max":24},
+  {"id":"benign_security_advice","label":0,"text":"SBI reminder: bank employees never ask customers to share an OTP or password. Use the official mobile application.","expected_max":49},
+  {"id":"suspicious_no_url","label":1,"text":"URGENT: Your bank account will be suspended today. Confirm your password immediately.","expected_min":25},
+  {"id":"sbi_mismatch","label":1,"text":"SBI Security: verify your account now at https://sbi-login-security.example/confirm","expected_min":50},
+  {"id":"microsoft_mismatch","label":1,"text":"Microsoft support: your mailbox is disabled. Sign in at https://office-security.example/login","expected_min":25},
+  {"id":"defanged_url","label":1,"text":"Your parcel is held. Pay the fee at hxxp://delivery-update[.]example/pay immediately.","expected_min":25},
+  {"id":"zero_width","label":1,"text":"Your acco\u200bunt is suspended. Verify your pass\u200bword immediately.","expected_min":25},
+  {"id":"spaced_password","label":1,"text":"Account locked. Verify your p a s s w o r d now to restore access.","expected_min":25},
+  {"id":"ip_url","label":1,"text":"Security check required at http://192.0.2.1:8080/login.exe","expected_min":50},
+  {"id":"punycode","label":1,"text":"Confirm your account at https://xn--pple-43d.example/login","expected_min":25},
+  {"id":"at_sign_url","label":1,"text":"Verify now at https://trusted.example@192.0.2.1/login","expected_min":50},
+  {"id":"nested_subdomains","label":1,"text":"Confirm payment at https://secure.login.verify.account.example.com/wallet","expected_min":25},
+  {"id":"mixed_script","label":1,"text":"Micrоsoft support says your account is suspended. Verify login immediately.","expected_min":25},
+  {"id":"gift_card_ceo","label":1,"text":"CEO request: buy gift cards now and keep this confidential.","expected_min":25}
+]
