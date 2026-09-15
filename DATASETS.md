@@ -28,6 +28,22 @@ Seed 42 stratified split:
 
 The final model is retrained on train+validation only after selection. The dataset manifest and derived TSVs are in `data/processed/uci_sms`; attribution is in `data/raw/ATTRIBUTION.md`.
 
+## Independent cross-domain holdout
+
+| Field | Value |
+|---|---|
+| Name | SMS Spam Dataset (2022) |
+| Publisher | Mendeley Data |
+| Source | <https://data.mendeley.com/datasets/f45bkkt8pr/1> |
+| License | Creative Commons Attribution 4.0 (CC BY 4.0) |
+| Accessed | 2026-09-15 |
+| Original archive SHA-256 | `9bbf3188fdad81495d8e82825648b9b63b53fc86841a3d26c02629990b233cc3` |
+| Source CSV SHA-256 | `649844f1c62a6b27e145eaf17a65f7010c56c390e11a794ea8329993a05ba71e` |
+| Retained holdout SHA-256 | `0b984c45b333e916fb1b6f61ac60b044f9d8dbb21270602a476e738422c7063f` |
+| Retained after strict UCI overlap removal | 521 (317 ham, 87 spam, 117 smishing) |
+
+The pipeline is `scripts/v2/acquire_data.py` followed by `scripts/v2/prepare_cross_domain.py`. The external messages are not training data. Exact and normalized near-overlap with the entire UCI corpus is removed before evaluation. Raw CSV/ZIP and the message-bearing derived holdout are intentionally Git-ignored; provenance and the non-content manifest remain versioned. See `docs/v2/DATA_PROTOCOL.md` for the complete protocol and limitations.
+
 ## Curated functional/adversarial corpus
 
 `ml/evaluation/adversarial_cases.json` contains 18 project-authored safe cases: 6 benign and 12 suspicious. It tests legitimate security notices, brand mismatch, defanged URLs, IP URLs, punycode, `@` URLs, nested subdomains, zero-width characters, mixed scripts, spaced credentials, and gift-card authority scams.
@@ -38,4 +54,4 @@ All 18 currently land in their expected risk bands. At a moderate threshold the 
 
 ## Known data limitations
 
-UCI SMS messages are older, English-language, short-form, and spam-focused. They do not represent all current enterprise phishing, screenshots, multilingual attacks, or business-email compromise. The test metrics establish performance on this named corpus only.
+UCI SMS messages are older, English-language, short-form, and spam-focused. The 2022 Mendeley holdout is newer but remains SMS-focused and is not a substitute for a broad modern phishing benchmark. Neither dataset represents all current enterprise phishing, screenshots, multilingual attacks, or business-email compromise. Reported metrics establish performance only on their named, documented splits.

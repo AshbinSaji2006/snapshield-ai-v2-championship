@@ -11,7 +11,9 @@ import numpy as np
 @lru_cache(maxsize=1)
 def get_ocr_engine():
     from rapidocr_onnxruntime import RapidOCR
-    return RapidOCR()
+    # Bound all three OCR ONNX sessions. Automatic 20-thread sessions caused
+    # severe oversubscription on the development laptop during recognition.
+    return RapidOCR(intra_op_num_threads=4, inter_op_num_threads=1, rec_batch_num=6)
 
 
 def ocr_status() -> dict[str, Any]:
@@ -38,4 +40,3 @@ def extract_text(content: bytes) -> dict[str, Any]:
         "processing_time_ms": round((time.perf_counter() - started) * 1000, 2),
         "engine_timing_seconds": engine_timing,
     }
-

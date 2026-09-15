@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "deployment_approved": true,
+  "version": "deep-guard-bert-tiny-1.0",
+  "model_name": "Deep Guard \u2014 BERT Tiny L2/H128",
+  "candidate": "bert_tiny",
+  "upstream": "google/bert_uncased_L-2_H-128_A-2",
+  "upstream_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+  "license": "apache-2.0",
+  "selection_policy": "Within 0.01 of best recall-weighted validation score, choose lowest measured CPU latency then size",
+  "temperature": 2.0088757362936236,
+  "max_length": 128,
+  "opset": 17,
+  "inputs": {
+    "input_ids": [
+      1,
+      128
+    ],
+    "attention_mask": [
+      1,
+      128
+    ]
+  },
+  "outputs": [
+    "logit"
+  ],
+  "operators": [
+    "Add",
+    "And",
+    "Cast",
+    "Clip",
+    "Concat",
+    "Constant",
+    "ConstantOfShape",
+    "Div",
+    "Equal",
+    "Erf",
+    "Expand",
+    "Flatten",
+    "Gather",
+    "GatherElements",
+    "Gemm",
+    "GreaterOrEqual",
+    "LayerNormalization",
+    "MatMul",
+    "Mul",
+    "ReduceSum",
+    "Reshape",
+    "Shape",
+    "Softmax",
+    "Squeeze",
+    "Transpose",
+    "Unsqueeze",
+    "Where"
+  ],
+  "file_hashes": {
+    "model.onnx": "71a4a43e36f5ef23845e28953b0a05785f6bf71c1785680f531e70efefe33f3f",
+    "tokenizer.json": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "model.qdq.onnx": "ce1128853b3a399d97d917e0d5bdde51f26b60d816171b3bb8f9732b63cf7827"
+  },
+  "fp32_onnx_validation": {
+    "n": 766,
+    "class_agreement": 1.0,
+    "max_probability_delta": 1.738962864372695e-06
+  },
+  "qnn_candidate": "model.qdq.onnx",
+  "qnn_npu_verified": false,
+  "snapdragon_hardware_validation": "PENDING \u2014 AI Hub credentials unavailable at freeze time"
+}

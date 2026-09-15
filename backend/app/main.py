@@ -20,6 +20,10 @@ from .model_runtime import get_classifier, model_status
 from .ocr_engine import extract_text, ocr_status
 from .runtime import runtime_manager
 from .schemas import AnalysisResponse, TextRequest, URLRequest
+from .deep_guard import get_deep_guard
+from .live_shield import live_shield
+from .evidence_graph import sanitized_export, build_graph
+from pydantic import BaseModel
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 logger = logging.getLogger("snapshield")
@@ -31,9 +35,10 @@ async def lifespan(_: FastAPI):
     get_classifier()
     logger.info("SnapShield started provider=%s", runtime_manager.selected_provider)
     yield
+    live_shield.stop()
 
 
-app = FastAPI(title="SnapShield AI", version="1.0.0", lifespan=lifespan, docs_url="/api/docs", redoc_url=None)
+app = FastAPI(title="SnapShield AI", version="2.0.0", lifespan=lifespan, docs_url="/api/docs", redoc_url=None)
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS, allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "testserver"])
 
@@ -61,7 +66,7 @@ def health():
 
 @app.get("/api/runtime")
 def runtime():
-    return runtime_manager.metadata() | {"ocr": ocr_status(), "model": model_status()}
+    return runtime_manager.metadata() | {"ocr": ocr_status(), "model": model_status(), "deep_guard":get_deep_guard().status(), "live_shield":live_shield.status()}
 
 
 @app.post("/api/analyze/text", response_model=AnalysisResponse)
@@ -113,7 +118,8 @@ async def analyze_image(file: UploadFile = File(...), save_incident: bool = Quer
         logger.warning("Local OCR failed error=%s", type(exc).__name__)
     combined = "\n".join(part for part in [text, *qr_values] if part)
     if combined:
-        result = analyze_text_full(combined, False)
+        sources = ([{"kind":"OCRText","label":"OCR-extracted text","text":text,"confidence":ocr.get("confidence")}] if text else []) + [{"kind":"QRPayload","label":f"QR payload {i+1}","text":value} for i,value in enumerate(qr_values)]
+        result = analyze_text_full(combined, False, {"input_type":"image","qr":bool(qr_values),"ocr_confidence":ocr.get("confidence"),"sources":sources})
         result["input_type"] = "image"
         result["details"]["ocr"] = ocr
         result["details"]["qr"] = {"decoder": "OpenCV QRCodeDetector (local)", "count": len(qr_values), "contents": qr_values, "types": ["url" if value.lower().startswith(("http://", "https://")) else "wifi" if value.upper().startswith("WIFI:") else "payment" if value.lower().startswith(("bitcoin:", "ethereum:")) else "text" for value in qr_values]}
@@ -122,6 +128,7 @@ async def analyze_image(file: UploadFile = File(...), save_incident: bool = Quer
         result.update({"input_type": "image", "risk_score": 0, "severity": "low", "threat_category": "No text extracted", "classification": "undetermined", "signals": [], "explanation": "The image was validated, but no OCR engine is available or no text could be extracted. No safety conclusion was made.", "recommendations": ["Review the image manually; image validity does not imply content safety."], "privacy_status": "Image decoded locally; source image not persisted"})
         result["details"]["ocr"] = ocr
         result["details"]["qr"] = {"decoder": "OpenCV QRCodeDetector (local)", "count": 0, "contents": [], "types": []}
+        result["details"]["evidence_graph"] = build_graph(result,[])
     result["processing_time_ms"] = round((time.perf_counter() - start) * 1000, 2)
     if save_incident:
         result["id"] = create_incident(result, hashlib.sha256(content).hexdigest())
@@ -137,6 +144,48 @@ def incident(incident_id: str):
     item = get_incident(incident_id)
     if item is None: raise HTTPException(404, "Incident not found")
     return item
+
+
+@app.get("/api/incidents/{incident_id}/export")
+def export_incident(incident_id: str):
+    item=get_incident(incident_id)
+    if item is None: raise HTTPException(404,"Incident not found")
+    return JSONResponse(sanitized_export(item),headers={"Content-Disposition":"attachment; filename=snapshield-incident.json"})
+
+
+class LiveConsent(BaseModel):
+    enabled: bool
+    consent: bool = False
+
+
+@app.get("/api/live/status")
+def live_status(): return live_shield.status()
+
+
+@app.post("/api/live/control")
+def live_control(request: LiveConsent):
+    if request.enabled:
+        if not request.consent: raise HTTPException(422,"Explicit clipboard monitoring consent is required")
+        if not live_shield.status()["available"]: raise HTTPException(409,"Windows clipboard is unavailable")
+        live_shield.start()
+    else: live_shield.stop()
+    return live_shield.status()
+
+
+@app.get("/api/live/latest")
+def live_latest(): return live_shield.latest()
+
+
+@app.post("/api/live/ignore")
+def live_ignore():
+    live_shield.ignore(); return {"ignored":True}
+
+
+@app.post("/api/live/save")
+def live_save():
+    identifier=live_shield.save()
+    if identifier is None: raise HTTPException(404,"No current clipboard alert to save")
+    return {"id":identifier}
 
 
 @app.delete("/api/incidents/{incident_id}")

@@ -9,11 +9,21 @@ def severity_for(score: int) -> str:
 
 
 def fuse(signals: list[dict[str, Any]], ml_probability: float | None = None) -> int:
-    positive = [float(s["contribution"]) for s in signals if float(s["contribution"]) > 0]
-    raw = sum(positive)
-    # Require corroboration: diminishing returns avoid one weak feature dominating.
-    if len(positive) == 1:
-        raw *= 0.82
+    families = {"model": [], "url": [], "brand": [], "normalization": [], "regional": [], "privacy": [], "social": []}
+    ids = set()
+    for signal in signals:
+        contribution = float(signal["contribution"])
+        if contribution <= 0: continue
+        code = signal.get("id", "UNSCOPED"); ids.add(code)
+        family = "model" if code.startswith(("TXT_ML_", "DEEP_ML_")) else "url" if code.startswith("URL_") else "brand" if code.startswith("BRAND_") else "normalization" if code.startswith("NORM_") or code in {"TXT_ZERO_WIDTH", "TXT_MIXED_SCRIPT"} else "regional" if code.startswith("INDIA_") else "privacy" if code == "PII_PRESENT" else "social"
+        families[family].append(contribution)
+    caps = {"model":25,"url":45,"brand":30,"normalization":15,"regional":30,"privacy":3,"social":45}
+    raw = sum(min(caps[name], sum(values)) for name,values in families.items())
+    # Explicit corroboration rules elevate combinations; no single heuristic proves harm.
+    credential = bool(ids & {"TXT_CREDENTIAL","TXT_OTP","INDIA_CREDENTIAL"})
+    if credential and (families["url"] or families["brand"]): raw += 10
+    if "TXT_ACCOUNT_THREAT" in ids and (credential or "TXT_PAYMENT" in ids): raw += 8
+    if len([name for name,values in families.items() if values and name!="privacy"]) == 1: raw *= .82
     if ml_probability is not None and ml_probability < .25 and raw < 28:
         raw *= .78
     return max(0, min(100, round(raw)))

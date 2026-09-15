@@ -1,0 +1,29 @@
+# Qualcomm and Windows deployment research
+
+Retrieved 2026-09-15 (Asia/Kolkata). Versions below are source-reported or registry-observed, not evidence of SnapShield execution.
+
+| Primary source | Current evidence | Decision / uncertainty |
+|---|---|---|
+| [AI Hub getting started](https://workbench.aihub.qualcomm.com/docs/hub/getting_started.html) | `qai-hub` client; Qualcomm login/token; `Client`, `Device`; compute example targets `Snapdragon X Elite CRD` with ONNX. | Target this named PC device, then preserve actual device returned by authenticated discovery. Never substitute a phone. |
+| [AI Hub devices](https://workbench.aihub.qualcomm.com/docs/hub/devices.html) | `Client.get_devices()` gives account-visible devices. Family/proxy targets differ from a specific hosted device. | A public example establishes a supported workflow, not account availability or a completed job. |
+| [AI Hub API](https://workbench.aihub.qualcomm.com/docs/hub/api.html) | ONNX, precompiled QNN ONNX, QNN DLC, TFLite; `--compute_unit npu`; ONNX can still fall back to CPU. | Retain full profile and inspect per-layer compute-unit evidence. Requested NPU alone cannot prove full NPU execution. Query QAIRT versions using `get_frameworks`. |
+| [AI Hub FAQ](https://workbench.aihub.qualcomm.com/docs/hub/faq.html) | Jobs execute on real hosted devices; own models supported; authentication required. | Upload only explicit development artifacts and public/synthetic validation inputs. No production analysis calls AI Hub. |
+| [QNN plugin repository](https://github.com/onnxruntime/onnxruntime-qnn) | Repository currently documents plugin 2.6.0; 2.x separates the QNN plugin from standard ORT. Windows ARM64 supports inference; x64 supports AOT compilation. | Do not blindly install an old 1.x bundled provider or infer local NPU support from an x64 package. Record installed version independently. |
+| [QNN plugin guidance](https://github.com/onnxruntime/onnxruntime-qnn/blob/main/docs/execution_providers/QNN-ExecutionProvider.md) | Plugin registration, provider options, context caching, supported operators; strict `session.disable_cpu_ep_fallback=1`. | Hash model and provider evidence. Expose initialization failure and CPU fallback. Operator names alone do not establish compile compatibility. |
+| [ORT QNN legacy/bundled guide](https://onnxruntime.ai/docs/execution-providers/QNN-ExecutionProvider.html) | Windows Snapdragon support; local NPU inference needs ARM64; x64 can quantize; representative QDQ calibration required. | Treat Python 3.11/version-specific examples as legacy guidance when they differ from the current plugin. Never calibrate quantization with random values for an accuracy claim. |
+| [QAIRT overview](https://dev.aihub.qualcomm.com/docs/) | QAIRT is the SDK; QNN names runtime APIs/tools. | Keep these terms distinct in reports. |
+| [Windows ML EP support](https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers) | X Elite and X Plus, minimum Hexagon driver 30.0.140.0; source lists QAIRT 2.42 for Windows ML 2.x. | Windows ML can deliver providers; it does not prove our model is supported. No verified X2 device/profile result exists for SnapShield. |
+| [Windows ML deployment](https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/distributing-your-app) | Python framework-dependent deployment; C#/C++ self-contained option; vendor EPs acquired separately or bundled. | Retain existing Python architecture. A shell rewrite would not solve native OCR/runtime dependency availability. |
+| [PyInstaller requirements](https://pyinstaller.org/en/v6.22.3/requirements.html), [PyPI ARM64 wheel](https://pypi.org/project/pyinstaller/6.22.0/) | Current documentation 6.22.3, Windows ARM64 wheel exists; PyInstaller is not an arbitrary cross-compiler. | Build on native Windows ARM64 Python with matching wheels; inspect PE machine type. Current AMD64 machine cannot validate the native result. |
+| [Tauri Windows packaging](https://v2.tauri.app/distribute/windows-installer/) | ARM64 toolchain and WebView2 packaging supported. | Feasible wrapper, but Python/ONNX/OCR sidecar still needs native dependencies. Not selected just to change executable architecture label. |
+| [Qualcomm DistilBERT](https://huggingface.co/qualcomm/Distil-Bert-Base-Uncased-Hf) | Apache-2.0 backbone example, Qualcomm export assets. | Useful compatibility lead; no security fine-tuning or SnapShield performance evidence can be borrowed. |
+
+Registry check: `qai-hub 0.55.0`, `transformers 5.17.0` on 2026-09-15. Training environment will be pinned. No QAIRT SDK, QNN plugin, or hardware result is assumed installed.
+
+## Fastest credible NPU path
+
+Train and select a small encoder + security head, export fixed `(1, 128)` token inputs to ONNX, verify reference equivalence, discover the exact X Elite CRD through an authenticated client, compile, profile, and run numerical inference checks. Preserve source/ONNX/compiled hashes, IDs, URLs, versions and raw reports. Mixed CPU/NPU profiles are disclosed as mixed. Hosted profiling does not establish end-to-end PC latency, energy savings, or native local deployment.
+
+## Challenge
+
+[Official competition page](https://unstop.com/competitions/crp-snapdragon-ai-lab-build-present-challenge-qualcomm-1748893) currently displays 30 September 2026, 11:59 PM IST as a registration deadline. The solution must target Snapdragon-powered HP PCs; an existing proposal must add models from Qualcomm AI Hub or another open-source platform. Individual entry, one eligible submission, immutable submitted entry. Technical implementation, use case/innovation, deployment/accessibility, presentation/documentation are the judging axes. Reconfirm actual submission deadline and upload limits inside the logged-in portal. Do not submit automatically.

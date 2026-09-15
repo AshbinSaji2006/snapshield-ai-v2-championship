@@ -42,7 +42,7 @@ def analyze_text(text: str) -> dict:
     probability = prediction.probability
     if probability is not None and probability >= 0.65:
         contribution = round(8 + probability * 17, 1)
-        signals.append({"id": "TXT_ML_PHISHING", "name": "Local ML phishing pattern", "severity": "high" if probability >= .8 else "moderate", "description": "The local TF-IDF logistic classifier found language patterns similar to its phishing examples.", "contribution": contribution, "evidence": f"model probability {probability:.2f}"})
+        signals.append({"id": "TXT_ML_PHISHING", "name": "Fast Guard message-risk pattern", "severity": "high" if probability >= .8 else "moderate", "description": "The local TF-IDF classifier found language patterns similar to UCI SMS spam examples; this is not universal phishing detection.", "contribution": contribution, "evidence": f"model probability {probability:.2f}"})
     elif probability is not None and probability <= 0.25:
         signals.append({"id": "TXT_ML_BENIGN", "name": "Local ML benign pattern", "severity": "info", "description": "Language resembles benign examples in the bundled model data.", "contribution": 0, "evidence": f"model probability {probability:.2f}"})
     top = max(category_points, key=category_points.get) if category_points else "Suspicious communication" if signals else "No specific threat detected"

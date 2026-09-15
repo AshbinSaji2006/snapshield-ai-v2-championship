@@ -1,0 +1,22 @@
+[
+  {"id":"legitimate_personal","kind":"text","text":"Hi Priya, the design review is Tuesday at 2 PM. No action is needed before the meeting.","max_risk":24},
+  {"id":"legitimate_urgent","kind":"text","text":"Urgent: the lecture hall changed to Room 12. Please arrive by 9 AM; no password or payment is needed.","max_risk":49},
+  {"id":"legitimate_brand_domain","kind":"text","text":"SBI notice: review safety guidance at https://sbi.co.in/security and never share your OTP.","absent_signal":"BRAND_DOMAIN_MISMATCH"},
+  {"id":"marketing_message","kind":"text","text":"Weekend sale: save 20 percent on notebooks at our campus store. Reply STOP to opt out.","max_risk":49},
+  {"id":"bank_impersonation","kind":"text","text":"SBI account blocked. Send OTP now at http://sbi-update.example/login.","required_signal":"BRAND_DOMAIN_MISMATCH","min_risk":50},
+  {"id":"hxxp_defang","kind":"text","text":"Verify your password at hxxp://secure-login[.]example now.","required_signal":"NORM_0","min_risk":25},
+  {"id":"zero_width","kind":"text","text":"Your p\u200bassword expires today. Verify at http://account-update.example.","required_signal":"NORM_0","min_risk":25},
+  {"id":"punycode","kind":"url","text":"https://xn--pple-43d.example/login","required_signal":"URL_PUNYCODE"},
+  {"id":"homoglyph_brand","kind":"text","text":"P\u0430yPal security: verify at https://p\u0430ypal-secure.example/login.","required_signal":"BRAND_DOMAIN_MISMATCH","min_risk":25},
+  {"id":"spaced_url","kind":"text","text":"Parcel held. Pay at https : // delivery-update.example now.","required_signal":"NORM_0","min_risk":25},
+  {"id":"shortened_url","kind":"url","text":"https://bit.ly/safe-demo-token","required_signal":"URL_SHORTENER"},
+  {"id":"scam_no_url","kind":"text","text":"You won a cash prize. Reply with your bank PIN and OTP immediately to claim.","min_risk":50},
+  {"id":"credential_request","kind":"text","text":"Security team: send your password and OTP immediately so we can unlock your account.","required_signal":"TXT_OTP","min_risk":25},
+  {"id":"payment_request","kind":"text","text":"Your account is suspended. Transfer the fee immediately to restore access.","required_signal":"TXT_PAYMENT","min_risk":25},
+  {"id":"hinglish_kyc","kind":"text","text":"Aapka SBI KYC block hone wala hai. Link click karo aur OTP bhejo http://sbi-update.example.","required_signal":"INDIA_KYC","min_risk":50},
+  {"id":"romanized_electricity","kind":"text","text":"Bijli connection kat jayega. Abhi payment karo at http://bill-update.example.","required_signal":"INDIA_DISCONNECT","min_risk":25},
+  {"id":"upi_refund_pin","kind":"text","text":"Refund receive karne ke liye UPI PIN bhejo immediately.","required_signal":"INDIA_UPI","min_risk":25},
+  {"id":"digital_arrest","kind":"text","text":"Police digital arrest case: do not tell family and transfer payment now.","required_signal":"INDIA_ARREST","min_risk":25},
+  {"id":"fake_job_fee","kind":"text","text":"Job hiring confirmed. Pay registration fee today to receive offer letter.","required_signal":"INDIA_JOB","min_risk":25},
+  {"id":"customs_parcel","kind":"text","text":"Your parcel is held by customs. Pay the fee immediately for release.","required_signal":"INDIA_PARCEL","min_risk":25}
+]

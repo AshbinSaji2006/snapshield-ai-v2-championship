@@ -1,5 +1,9 @@
+import type { Graph, Routing, LiveStatus } from './Championship'
 export type Signal = { id: string; name: string; severity: string; description: string; contribution: number; evidence?: string }
 export type AnalysisDetails = {
+  evidence_graph?: Graph;
+  routing?: Routing;
+  normalization?: {original_text_redacted:string;normalized_security_text_redacted:string;transformations:string[];script:string};
   ocr?: { engine: string; available: boolean; text: string; characters: number; line_count: number; confidence: number; processing_time_ms: number };
   qr?: { decoder: string; count: number; contents: string[]; types: string[] };
   [key: string]: unknown;
@@ -12,6 +16,8 @@ export type Analysis = {
   runtime: Runtime; processing_time_ms: number; privacy_status: string; details: AnalysisDetails
 }
 export type Runtime = {
+  deep_guard?: {ready:boolean;provider:string;reason:string;model_name?:string;version?:string};
+  live_shield?: LiveStatus;
   os: string; architecture: string; python: string; selected_provider: string; available_onnx_providers: string[];
   model_readiness: string; snapdragon_npu_verified: boolean; snapdragon_status: string; cloud_ai_enabled: boolean;
   hardware_acceleration?: string; ocr?: { available: boolean; engine: string; local: boolean };

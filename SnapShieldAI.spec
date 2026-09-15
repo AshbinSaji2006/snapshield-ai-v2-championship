@@ -5,6 +5,10 @@ project = Path(SPECPATH)
 datas = [
     (str(project / "frontend" / "dist"), "frontend/dist"),
     (str(project / "ml" / "artifacts"), "ml/artifacts"),
+    (str(project / "ml" / "v2" / "deep_guard"), "ml/v2/deep_guard"),
+    (str(project / "ml" / "v2" / "fast_calibration.json"), "ml/v2"),
+    (str(project / "ml" / "v2" / "router_policy.json"), "ml/v2"),
+    (str(project / "backend" / "resources"), "backend/resources"),
     (str(project / "data" / "samples"), "data/samples"),
 ] + collect_data_files("rapidocr_onnxruntime")
 hiddenimports = collect_submodules("rapidocr_onnxruntime") + [

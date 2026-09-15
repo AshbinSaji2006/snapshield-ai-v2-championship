@@ -15,6 +15,7 @@ Direct project dependencies are pinned in `requirements.txt` and `frontend/packa
 | joblib | 1.5.3 | BSD-3-Clause |
 | ONNX | 1.22.0 | Apache-2.0 |
 | ONNX Runtime | 1.30.0 | MIT |
+| Hugging Face Tokenizers | 0.23.1 | Apache-2.0 |
 | RapidOCR ONNX Runtime | 1.4.4 | Apache-2.0 |
 | OpenCV Python | 5.0.0.93 | Apache-2.0; bundled codecs/components may have separate terms |
 | qrcode | 8.2 | BSD-3-Clause |
@@ -31,6 +32,8 @@ Direct project dependencies are pinned in `requirements.txt` and `frontend/packa
 | oxlint | 1.82.0 | MIT |
 | `@vitejs/plugin-react` | 6.1.1 | MIT |
 
-Dataset: UCI SMS Spam Collection, DOI 10.24432/C5CC84, licensed CC BY 4.0. See `data/raw/ATTRIBUTION.md`.
+Datasets: UCI SMS Spam Collection, DOI 10.24432/C5CC84, and the 2022 Mendeley SMS Spam Dataset, DOI 10.17632/f45bkkt8pr.1, are used under CC BY 4.0. See `DATASETS.md` and `docs/v2/DATA_PROTOCOL.md`.
+
+Deep Guard derives from `google/bert_uncased_L-2_H-128_A-2` revision `30b0a37ccaaa32f332884b96992754e246e48c5f`, Apache-2.0. The vendored Public Suffix List snapshot is from <https://publicsuffix.org/list/public_suffix_list.dat>, licensed MPL-2.0; its source hash and acquisition metadata are in `backend/resources/public_suffix_list.provenance.json`.
 
 RapidOCR includes local model data collected into the packaged release. Review its upstream model/license notices before commercial redistribution. Snapdragon is a trademark of Qualcomm Incorporated; project use does not imply endorsement.

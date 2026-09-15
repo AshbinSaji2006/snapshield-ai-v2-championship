@@ -4,6 +4,7 @@ import re
 from urllib.parse import urlsplit
 
 from .url_analyzer import normalize_url
+from .domain_intelligence import domain_facts, edit_distance
 
 BRANDS: dict[str, dict[str, object]] = {
     "SBI": {"pattern": r"\b(?:SBI|State Bank of India)\b", "domains": ("sbi.co.in", "onlinesbi.sbi")},
@@ -32,11 +33,14 @@ def analyze_brand_mismatch(text: str, urls: list[str]) -> list[dict]:
             except ValueError:
                 continue
             if host and not _matches(host, expected):
+                facts = domain_facts(host)
+                token = facts["confusable_skeleton"].split(".")[-2] if "." in facts["confusable_skeleton"] else host
                 signals.append({
                     "id": "BRAND_DOMAIN_MISMATCH", "name": f"{brand} domain mismatch", "severity": "high",
-                    "description": f"The message references {brand}, but the provided hostname is not in the controlled official-domain mapping.",
+                    "description": f"The message references {brand}, but the destination does not match the finite official-domain map. Legitimate third-party services are possible; verify independently.",
                     "contribution": 24, "evidence": f"Observed {host}; expected {', '.join(expected)}", "brand": brand,
                     "observed_domain": host, "expected_domains": list(expected), "heuristic": True,
+                    "registrable_domain": facts["registrable_domain"], "unicode_host": facts["unicode_host"],
+                    "brand_edit_distance": edit_distance(token.casefold(), brand.casefold()),
                 })
     return signals
-

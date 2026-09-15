@@ -3,6 +3,7 @@ import math
 import re
 from collections import Counter
 from urllib.parse import parse_qs, unquote, urlsplit, urlunsplit
+from .domain_intelligence import domain_facts
 
 SHORTENERS = {"bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly", "is.gd", "cutt.ly", "rb.gy"}
 SUSPICIOUS_WORDS = {"verify", "secure", "account", "update", "login", "signin", "wallet", "payment", "suspended", "confirm", "banking", "bonus", "gift"}
@@ -44,13 +45,21 @@ def analyze_url(raw: str) -> dict:
     except ValueError:
         pass
     if parts.scheme == "http": add("URL_INSECURE_SCHEME", "Unencrypted scheme", "moderate", "Uses HTTP instead of HTTPS.", 10, "http://")
-    if "xn--" in host: add("URL_PUNYCODE", "Punycode hostname", "high", "Internationalized hostname can conceal look-alike characters.", 20, host)
+    facts = domain_facts(host)
+    if facts.get("idna_valid") is False:
+        raise ValueError("Hostname contains invalid internationalized-domain characters")
+    if "xn--" in facts["host"]: add("URL_PUNYCODE", "Internationalized hostname", "info", "Punycode is a legitimate encoding. Review its Unicode spelling; the encoding alone does not imply danger.", 0, facts["unicode_host"])
+    if facts["mixed_script"]: add("URL_IDN_MIXED", "Mixed-script hostname", "moderate", "The hostname combines scripts and may contain look-alike characters.", 12, facts["unicode_host"])
     if "@" in raw: add("URL_AT_SYMBOL", "Misleading @ symbol", "high", "An @ symbol can hide the true destination.", 22, "@")
     if raw.count("//") > 1: add("URL_DOUBLE_SLASH", "Extra double slash", "moderate", "Unexpected double slashes may obscure the URL structure.", 8)
     if len(normalized) > 120: add("URL_LENGTH", "Unusually long URL", "moderate", "The URL is unusually long.", 10, f"{len(normalized)} characters")
     if host.count(".") >= 4: add("URL_SUBDOMAINS", "Many subdomains", "moderate", "Many nested subdomains can disguise the registered domain.", 10, host)
     if host in SHORTENERS: add("URL_SHORTENER", "Shortened URL", "moderate", "A shortening service hides the final destination.", 14, host)
-    if parts.port and parts.port not in {80, 443}: add("URL_PORT", "Unusual network port", "high", "Uses a non-standard web port.", 18, str(parts.port))
+    try:
+        port = parts.port
+    except ValueError as exc:
+        raise ValueError("URL contains an invalid port") from exc
+    if port and port not in {80, 443}: add("URL_PORT", "Unusual network port", "high", "Uses a non-standard web port.", 18, str(port))
     if "%" in raw: add("URL_ENCODING", "Encoded characters", "low", "Encoded characters reduce readability.", 5)
     keywords = sorted(word for word in SUSPICIOUS_WORDS if word in unquote(normalized).lower())
     if keywords: add("URL_LURE_TERMS", "Credential or payment terms", "moderate", "Contains terms commonly used in account lures.", min(18, 5 + len(keywords) * 3), ", ".join(keywords))
@@ -67,4 +76,4 @@ def analyze_url(raw: str) -> dict:
     if sum(c.isdigit() for c in host) >= 6: add("URL_DIGITS", "Digit-heavy hostname", "low", "The hostname contains many digits.", 6, host)
     if _entropy(host.replace(".", "")) > 3.8 and len(host) > 18: add("URL_ENTROPY", "Random-looking hostname", "moderate", "Hostname has high character entropy.", 9, host)
     score = min(100, sum(int(s["contribution"]) for s in signals))
-    return {"normalized_url": normalized, "host": host, "scheme": parts.scheme, "port": parts.port, "path_length": len(parts.path), "query_parameters": len(parse_qs(parts.query)), "signals": signals, "score": score}
+    return {"normalized_url": normalized, "host": host, "domain_facts": facts, "scheme": parts.scheme, "port": port, "path_length": len(parts.path), "query_parameters": len(parse_qs(parts.query)), "signals": signals, "score": score}

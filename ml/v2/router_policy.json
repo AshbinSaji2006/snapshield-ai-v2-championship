@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0",
+  "policy_version": "adaptive-v2.2",
+  "entropy_threshold": 0.045,
+  "selection_source": "Post-v2.1 security ship-gate: fixed calibrated confidence bounds p<=.005 or p>=.995, audited on UCI validation OOF",
+  "prior_policy_status": "adaptive-v2.1 rejected after cross-domain recall failed the ship gate; its report is preserved",
+  "context_escalation": true,
+  "selected_validation": {
+    "n": 766,
+    "accuracy": 0.9869451697127938,
+    "precision": 0.9761904761904762,
+    "recall": 0.9111111111111111,
+    "f1": 0.9425287356321839,
+    "macro_f1": 0.9675824826909079,
+    "fpr": 0.0029585798816568047,
+    "fnr": 0.08888888888888889,
+    "confusion_matrix": [
+      [
+        674,
+        2
+      ],
+      [
+        8,
+        82
+      ]
+    ],
+    "escalated_count": 280,
+    "escalated_fraction": 0.36553524804177545,
+    "entropy_threshold": 0.045,
+    "quality_score": 0.7334407430438152
+  },
+  "deep_validation": {
+    "n": 766,
+    "accuracy": 0.9830287206266318,
+    "precision": 0.9529411764705882,
+    "recall": 0.9,
+    "f1": 0.9257142857142857,
+    "macro_f1": 0.9580671649647332,
+    "fpr": 0.005917159763313609,
+    "fnr": 0.1,
+    "confusion_matrix": [
+      [
+        672,
+        4
+      ],
+      [
+        9,
+        81
+      ]
+    ]
+  },
+  "fast_validation": {
+    "n": 766,
+    "accuracy": 0.9882506527415144,
+    "precision": 0.9764705882352941,
+    "recall": 0.9222222222222223,
+    "f1": 0.9485714285714286,
+    "macro_f1": 0.9709695757448153,
+    "fpr": 0.0029585798816568047,
+    "fnr": 0.07777777777777778,
+    "confusion_matrix": [
+      [
+        674,
+        2
+      ],
+      [
+        7,
+        83
+      ]
+    ]
+  },
+  "candidates": [
+    {
+      "n": 766,
+      "accuracy": 0.9869451697127938,
+      "precision": 0.9761904761904762,
+      "recall": 0.9111111111111111,
+      "f1": 0.9425287356321839,
+      "macro_f1": 0.9675824826909079,
+      "fpr": 0.0029585798816568047,
+      "fnr": 0.08888888888888889,
+      "confusion_matrix": [
+        [
+          674,
+          2
+        ],
+        [
+          8,
+          82
+        ]
+      ],
+      "escalated_count": 280,
+      "escalated_fraction": 0.36553524804177545,
+      "entropy_threshold": 0.045,
+      "quality_score": 0.7334407430438152
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9869451697127938,
+      "precision": 0.9761904761904762,
+      "recall": 0.9111111111111111,
+      "f1": 0.9425287356321839,
+      "macro_f1": 0.9675824826909079,
+      "fpr": 0.0029585798816568047,
+      "fnr": 0.08888888888888889,
+      "confusion_matrix": [
+        [
+          674,
+          2
+        ],
+        [
+          8,
+          82
+        ]
+      ],
+      "escalated_count": 188,
+      "escalated_fraction": 0.2454308093994778,
+      "entropy_threshold": 0.08,
+      "quality_score": 0.7382449205895072
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9869451697127938,
+      "precision": 0.9761904761904762,
+      "recall": 0.9111111111111111,
+      "f1": 0.9425287356321839,
+      "macro_f1": 0.9675824826909079,
+      "fpr": 0.0029585798816568047,
+      "fnr": 0.08888888888888889,
+      "confusion_matrix": [
+        [
+          674,
+          2
+        ],
+        [
+          8,
+          82
+        ]
+      ],
+      "escalated_count": 108,
+      "escalated_fraction": 0.1409921671018277,
+      "entropy_threshold": 0.2,
+      "quality_score": 0.7424224662814132
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9882506527415144,
+      "precision": 0.9879518072289156,
+      "recall": 0.9111111111111111,
+      "f1": 0.9479768786127167,
+      "macro_f1": 0.9706771810282127,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.08888888888888889,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          8,
+          82
+        ]
+      ],
+      "escalated_count": 81,
+      "escalated_fraction": 0.10574412532637076,
+      "entropy_threshold": 0.4,
+      "quality_score": 0.7452113903586539
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9882506527415144,
+      "precision": 0.9879518072289156,
+      "recall": 0.9111111111111111,
+      "f1": 0.9479768786127167,
+      "macro_f1": 0.9706771810282127,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.08888888888888889,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          8,
+          82
+        ]
+      ],
+      "escalated_count": 72,
+      "escalated_fraction": 0.09399477806788512,
+      "entropy_threshold": 0.5,
+      "quality_score": 0.7456813642489933
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9895561357702349,
+      "precision": 0.9880952380952381,
+      "recall": 0.9222222222222223,
+      "f1": 0.9540229885057471,
+      "macro_f1": 0.9740659861527263,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.07777777777777778,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          7,
+          83
+        ]
+      ],
+      "escalated_count": 63,
+      "escalated_fraction": 0.08224543080939947,
+      "entropy_threshold": 0.6,
+      "quality_score": 0.7523374199329126
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9908616187989556,
+      "precision": 0.9882352941176471,
+      "recall": 0.9333333333333333,
+      "f1": 0.96,
+      "macro_f1": 0.9774207811348563,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          6,
+          84
+        ]
+      ],
+      "escalated_count": 62,
+      "escalated_fraction": 0.08093994778067885,
+      "entropy_threshold": 0.65,
+      "quality_score": 0.758563817497807
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9908616187989556,
+      "precision": 0.9882352941176471,
+      "recall": 0.9333333333333333,
+      "f1": 0.96,
+      "macro_f1": 0.9774207811348563,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          6,
+          84
+        ]
+      ],
+      "escalated_count": 59,
+      "escalated_fraction": 0.07702349869451697,
+      "entropy_threshold": 0.7,
+      "quality_score": 0.7587204754612534
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9908616187989556,
+      "precision": 0.9882352941176471,
+      "recall": 0.9333333333333333,
+      "f1": 0.96,
+      "macro_f1": 0.9774207811348563,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          6,
+          84
+        ]
+      ],
+      "escalated_count": 55,
+      "escalated_fraction": 0.07180156657963446,
+      "entropy_threshold": 0.75,
+      "quality_score": 0.7589293527458487
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9921671018276762,
+      "precision": 1.0,
+      "recall": 0.9333333333333333,
+      "f1": 0.9655172413793104,
+      "macro_f1": 0.9805494896145448,
+      "fpr": 0.0,
+      "fnr": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          676,
+          0
+        ],
+        [
+          6,
+          84
+        ]
+      ],
+      "escalated_count": 52,
+      "escalated_fraction": 0.06788511749347259,
+      "entropy_threshold": 0.8,
+      "quality_score": 0.7604769166653518
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9908616187989556,
+      "precision": 0.9882352941176471,
+      "recall": 0.9333333333333333,
+      "f1": 0.96,
+      "macro_f1": 0.9774207811348563,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          6,
+          84
+        ]
+      ],
+      "escalated_count": 49,
+      "escalated_fraction": 0.0639686684073107,
+      "entropy_threshold": 0.85,
+      "quality_score": 0.7592426686727417
+    },
+    {
+      "n": 766,
+      "accuracy": 0.9908616187989556,
+      "precision": 0.9882352941176471,
+      "recall": 0.9333333333333333,
+      "f1": 0.96,
+      "macro_f1": 0.9774207811348563,
+      "fpr": 0.0014792899408284023,
+      "fnr": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          675,
+          1
+        ],
+        [
+          6,
+          84
+        ]
+      ],
+      "escalated_count": 49,
+      "escalated_fraction": 0.0639686684073107,
+      "entropy_threshold": 0.9,
+      "quality_score": 0.7592426686727417
+    }
+  ],
+  "test_used_for_selection": false,
+  "validation_hash": "b0d8fb5aa0c29e8fd4930417901c3f4c0c9f9714da7de3db8a659455b4d688c8"
+}

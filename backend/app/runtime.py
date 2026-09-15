@@ -27,8 +27,7 @@ class RuntimeManager:
 
     @property
     def selected_provider(self) -> str:
-        preferred = ["QNNExecutionProvider", "DmlExecutionProvider", "CUDAExecutionProvider"]
-        return self.model_provider or next((p for p in preferred if p in self.onnx_providers), "CPUExecutionProvider" if "CPUExecutionProvider" in self.onnx_providers else "Native Python CPU")
+        return self.model_provider or ("CPUExecutionProvider" if "CPUExecutionProvider" in self.onnx_providers else "Native Python CPU")
 
     def record_model_provider(self, provider: str) -> None:
         self.model_provider = provider
@@ -44,7 +43,8 @@ class RuntimeManager:
 
     def metadata(self) -> dict[str, Any]:
         validation = self.snapdragon_validation()
-        snapdragon_verified = bool(validation.get("verified")) and validation.get("execution_provider") == "QNNExecutionProvider"
+        # A historical validation JSON cannot turn current CPU fallback into NPU execution.
+        snapdragon_verified = bool(validation.get("verified")) and validation.get("execution_provider") == "QNNExecutionProvider" and self.selected_provider == "QNNExecutionProvider"
         return {
             "os": platform.platform(),
             "architecture": platform.machine(),

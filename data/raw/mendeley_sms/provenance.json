@@ -1,0 +1,20 @@
+{
+  "source": "https://data.mendeley.com/public-files/datasets/f45bkkt8pr/files/edb361de-918d-469f-9106-e84823830665/file_downloaded",
+  "canonical": "https://doi.org/10.17632/f45bkkt8pr.1",
+  "authors": [
+    "Sandhya Mishra",
+    "Devpriya Soni"
+  ],
+  "license": "CC-BY-4.0",
+  "acquired_utc": "2026-09-14T20:24:10.230343+00:00",
+  "sha256": "9bbf3188fdad81495d8e82825648b9b63b53fc86841a3d26c02629990b233cc3",
+  "publisher_hash_verified": true,
+  "archive_bytes": 244698,
+  "members": [
+    {
+      "name": "Dataset_5971.csv",
+      "bytes": 595987
+    }
+  ],
+  "role": "cross-dataset evaluation only"
+}

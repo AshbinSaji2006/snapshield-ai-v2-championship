@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.0",
+  "name": "India-focused multilingual and adversarial functional robustness evaluation",
+  "not_classifier_accuracy": true,
+  "cases": 20,
+  "passed": 20,
+  "failed": 0,
+  "case_file_sha256": "08e40bbb55ededef6ac639a9859d12a7aa78d4da19f6269e114fc5fee49c803f",
+  "results": [
+    {
+      "id": "legitimate_personal",
+      "passed": true,
+      "risk_score": 0,
+      "severity": "low",
+      "signals": [
+        "DEEP_ML_CLEAR"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "legitimate_urgent",
+      "passed": true,
+      "risk_score": 19,
+      "severity": "low",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "TXT_PAYMENT",
+        "TXT_URGENCY"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "legitimate_brand_domain",
+      "passed": true,
+      "risk_score": 20,
+      "severity": "low",
+      "signals": [
+        "DEEP_ML_RISK",
+        "TXT_SAFETY_ADVICE"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "marketing_message",
+      "passed": true,
+      "risk_score": 0,
+      "severity": "low",
+      "signals": [
+        "DEEP_ML_CLEAR"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "bank_impersonation",
+      "passed": true,
+      "risk_score": 100,
+      "severity": "critical",
+      "signals": [
+        "BRAND_DOMAIN_MISMATCH",
+        "DEEP_ML_RISK",
+        "TXT_ACCOUNT_THREAT",
+        "TXT_OTP",
+        "URL_INSECURE_SCHEME",
+        "URL_LURE_TERMS"
+      ],
+      "route": "ESCALATE_HIGH_RISK_CONTEXT"
+    },
+    {
+      "id": "hxxp_defang",
+      "passed": true,
+      "risk_score": 81,
+      "severity": "critical",
+      "signals": [
+        "DEEP_ML_RISK",
+        "NORM_0",
+        "NORM_1",
+        "TXT_CREDENTIAL",
+        "URL_INSECURE_SCHEME",
+        "URL_LURE_TERMS"
+      ],
+      "route": "ESCALATE_HIGH_RISK_CONTEXT"
+    },
+    {
+      "id": "zero_width",
+      "passed": true,
+      "risk_score": 61,
+      "severity": "high",
+      "signals": [
+        "DEEP_ML_RISK",
+        "NORM_0",
+        "TXT_URGENCY",
+        "URL_INSECURE_SCHEME",
+        "URL_LURE_TERMS"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "punycode",
+      "passed": true,
+      "risk_score": 25,
+      "severity": "moderate",
+      "signals": [
+        "URL_HYPHENS",
+        "URL_IDN_MIXED",
+        "URL_LURE_TERMS",
+        "URL_PUNYCODE"
+      ],
+      "route": null
+    },
+    {
+      "id": "homoglyph_brand",
+      "passed": true,
+      "risk_score": 88,
+      "severity": "critical",
+      "signals": [
+        "BRAND_DOMAIN_MISMATCH",
+        "NORM_0",
+        "TXT_CREDENTIAL",
+        "TXT_ML_BENIGN",
+        "URL_BRAND_MISMATCH",
+        "URL_LURE_TERMS"
+      ],
+      "route": "FAST_ONLY_HIGH_CONFIDENCE"
+    },
+    {
+      "id": "spaced_url",
+      "passed": true,
+      "risk_score": 66,
+      "severity": "high",
+      "signals": [
+        "DEEP_ML_RISK",
+        "NORM_0",
+        "TXT_DELIVERY",
+        "TXT_PAYMENT",
+        "URL_LURE_TERMS"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "shortened_url",
+      "passed": true,
+      "risk_score": 11,
+      "severity": "low",
+      "signals": [
+        "URL_SHORTENER"
+      ],
+      "route": null
+    },
+    {
+      "id": "scam_no_url",
+      "passed": true,
+      "risk_score": 77,
+      "severity": "critical",
+      "signals": [
+        "TXT_ML_PHISHING",
+        "TXT_OTP",
+        "TXT_PRIZE",
+        "TXT_URGENCY"
+      ],
+      "route": "FAST_ONLY_HIGH_CONFIDENCE"
+    },
+    {
+      "id": "credential_request",
+      "passed": true,
+      "risk_score": 56,
+      "severity": "high",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "TXT_CREDENTIAL",
+        "TXT_OTP",
+        "TXT_URGENCY"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "payment_request",
+      "passed": true,
+      "risk_score": 40,
+      "severity": "moderate",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "TXT_ACCOUNT_THREAT",
+        "TXT_PAYMENT",
+        "TXT_URGENCY"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "hinglish_kyc",
+      "passed": true,
+      "risk_score": 100,
+      "severity": "critical",
+      "signals": [
+        "BRAND_DOMAIN_MISMATCH",
+        "DEEP_ML_RISK",
+        "INDIA_CREDENTIAL",
+        "INDIA_KYC",
+        "TXT_OTP",
+        "URL_INSECURE_SCHEME",
+        "URL_LURE_TERMS"
+      ],
+      "route": "ESCALATE_HIGH_RISK_CONTEXT"
+    },
+    {
+      "id": "romanized_electricity",
+      "passed": true,
+      "risk_score": 76,
+      "severity": "critical",
+      "signals": [
+        "DEEP_ML_RISK",
+        "INDIA_DISCONNECT",
+        "TXT_PAYMENT",
+        "URL_INSECURE_SCHEME",
+        "URL_LURE_TERMS"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "upi_refund_pin",
+      "passed": true,
+      "risk_score": 58,
+      "severity": "high",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "INDIA_CREDENTIAL",
+        "INDIA_UPI",
+        "TXT_URGENCY"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "digital_arrest",
+      "passed": true,
+      "risk_score": 58,
+      "severity": "high",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "INDIA_ARREST",
+        "TXT_AUTHORITY",
+        "TXT_PAYMENT",
+        "TXT_SECRET"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "fake_job_fee",
+      "passed": true,
+      "risk_score": 32,
+      "severity": "moderate",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "INDIA_JOB",
+        "TXT_PAYMENT"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    },
+    {
+      "id": "customs_parcel",
+      "passed": true,
+      "risk_score": 54,
+      "severity": "high",
+      "signals": [
+        "DEEP_ML_CLEAR",
+        "INDIA_PARCEL",
+        "TXT_DELIVERY",
+        "TXT_PAYMENT",
+        "TXT_URGENCY"
+      ],
+      "route": "ESCALATE_UNCERTAIN"
+    }
+  ]
+}

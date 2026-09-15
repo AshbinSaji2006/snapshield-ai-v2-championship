@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "measured": true,
+  "measurement_scope": "Current AMD64 development PC only; not Snapdragon",
+  "hardware": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "architecture": "AMD64",
+    "cpu": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "logical_cpus": 20,
+    "ram_gib": 15.72
+  },
+  "providers": {
+    "fast_guard": "CPUExecutionProvider",
+    "deep_guard": "CPUExecutionProvider"
+  },
+  "versions": {
+    "onnxruntime": "1.30.0",
+    "numpy": "2.2.6",
+    "scikit-learn": "1.7.1",
+    "opencv-python": "5.0.0.93",
+    "rapidocr-onnxruntime": "1.4.4"
+  },
+  "operations": {
+    "cold_backend_import": {
+      "warmup": 0,
+      "repetitions": 5,
+      "median_ms": 2564.252000000124,
+      "mean_ms": 2511.0288999998374,
+      "p95_ms": 2628.2453599997098,
+      "min_ms": 2348.1232999993153,
+      "max_ms": 2637.3084999995626
+    },
+    "fast_guard": {
+      "warmup": 10,
+      "repetitions": 100,
+      "median_ms": 1.1621499998000218,
+      "mean_ms": 1.295219000076031,
+      "p95_ms": 2.0168849996935023,
+      "min_ms": 0.8544000002075336,
+      "max_ms": 3.159599999889906
+    },
+    "deep_guard_total": {
+      "warmup": 5,
+      "repetitions": 50,
+      "median_ms": 10.422849999940809,
+      "mean_ms": 12.256394000087312,
+      "p95_ms": 22.359749999895936,
+      "min_ms": 7.030200000372133,
+      "max_ms": 47.023600000102306
+    },
+    "adaptive_decision": {
+      "warmup": 20,
+      "repetitions": 500,
+      "median_ms": 0.01049999991664663,
+      "mean_ms": 0.018021799995040055,
+      "p95_ms": 0.012105000269002625,
+      "min_ms": 0.009599999430065509,
+      "max_ms": 1.2862000003224239
+    },
+    "url_engine": {
+      "warmup": 10,
+      "repetitions": 100,
+      "median_ms": 0.15155000028244103,
+      "mean_ms": 0.32008899997890694,
+      "p95_ms": 1.8994449997080662,
+      "min_ms": 0.12719999995169928,
+      "max_ms": 3.76589999996213
+    },
+    "evidence_graph": {
+      "warmup": 10,
+      "repetitions": 100,
+      "median_ms": 0.4977499997949053,
+      "mean_ms": 0.8384969999769964,
+      "p95_ms": 2.3427299998274975,
+      "min_ms": 0.43540000024222536,
+      "max_ms": 2.8449000001273816
+    },
+    "full_text_pipeline": {
+      "warmup": 5,
+      "repetitions": 30,
+      "median_ms": 28.685049999694456,
+      "mean_ms": 29.23982666655623,
+      "p95_ms": 38.51702000001751,
+      "min_ms": 15.495300000111456,
+      "max_ms": 52.46949999946082
+    },
+    "qr_decode": {
+      "warmup": 2,
+      "repetitions": 10,
+      "median_ms": 198.87365000022328,
+      "mean_ms": 211.21087999990777,
+      "p95_ms": 263.4720199996081,
+      "min_ms": 179.99499999950785,
+      "max_ms": 281.07079999972484
+    },
+    "ocr": {
+      "warmup": 1,
+      "repetitions": 5,
+      "median_ms": 3304.173599999558,
+      "mean_ms": 3370.7614799997828,
+      "p95_ms": 3721.8946200000573,
+      "min_ms": 3103.3937999991394,
+      "max_ms": 3805.8584000000337
+    },
+    "multimodal_fusion": {
+      "warmup": 2,
+      "repetitions": 10,
+      "median_ms": 22.375300000021525,
+      "mean_ms": 23.08896000013192,
+      "p95_ms": 30.156515000135187,
+      "min_ms": 16.92209999964689,
+      "max_ms": 30.43969999998808
+    },
+    "live_shield": {
+      "warmup": 2,
+      "repetitions": 10,
+      "median_ms": 21.813100000144914,
+      "mean_ms": 21.54091000002154,
+      "p95_ms": 25.698764999742707,
+      "min_ms": 16.75260000047274,
+      "max_ms": 26.462099999662314
+    }
+  }
+}

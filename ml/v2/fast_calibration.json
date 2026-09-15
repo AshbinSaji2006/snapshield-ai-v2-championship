@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "approved": true,
+  "method": "Platt scaling on 5-fold OOF development predictions",
+  "deployment_fit": "All train+validation OOF predictions",
+  "evaluation": "Disjoint 50% of OOF predictions; calibrator fit on other 50%",
+  "coefficient": 1.6613344523464328,
+  "intercept": 0.6548905463877878,
+  "audit_fit_coefficient": 1.678743520278551,
+  "audit_fit_intercept": 0.600081758370748,
+  "evaluation_raw": {
+    "n": 2170,
+    "brier": 0.013923639439023998,
+    "ece_10_bins": 0.023508126918646496,
+    "macro_f1": 0.9629266584234006,
+    "recall": 0.8937007874015748,
+    "fpr": 0.0026096033402922755,
+    "confusion_matrix": [
+      [
+        1911,
+        5
+      ],
+      [
+        27,
+        227
+      ]
+    ]
+  },
+  "evaluation_calibrated": {
+    "n": 2170,
+    "brier": 0.012662632727976492,
+    "ece_10_bins": 0.005591074206594016,
+    "macro_f1": 0.9610292750536653,
+    "recall": 0.9015748031496063,
+    "fpr": 0.004697286012526096,
+    "confusion_matrix": [
+      [
+        1907,
+        9
+      ],
+      [
+        25,
+        229
+      ]
+    ]
+  },
+  "test_read": false,
+  "development_count": 4339,
+  "seed": 42,
+  "oof_predictions_sha256": "0b83608d0b36cb135c2e5a1b649b45d2f8feab5196b590df42bd33279619e366",
+  "split_hashes": {
+    "train": "f690277f868451e7bee33bd50d5b212914a864ae5330efeade8669c0e8136b70",
+    "validation": "b0d8fb5aa0c29e8fd4930417901c3f4c0c9f9714da7de3db8a659455b4d688c8"
+  }
+}

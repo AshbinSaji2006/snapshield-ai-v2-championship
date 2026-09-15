@@ -1,0 +1,7 @@
+{
+  "source": "https://publicsuffix.org/list/public_suffix_list.dat",
+  "license": "MPL-2.0",
+  "acquired_utc": "2026-09-14T20:24:10.230343+00:00",
+  "sha256": "4b673689999dbaca60b93fa3e1da5752505ef9717b1c4dc44acbfdafd35679ea",
+  "runtime_network_refresh": false
+}
