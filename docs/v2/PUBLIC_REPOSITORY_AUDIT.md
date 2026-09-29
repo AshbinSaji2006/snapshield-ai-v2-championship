@@ -11,9 +11,11 @@
 
 ## Publication status
 
-`PUBLIC_REPOSITORY_URL_PENDING`
+Published and verified public on 2026-09-29:
 
-No repository was created or published automatically. Before publication, the owner must review Git’s staged file list, confirm identity/license metadata, choose Git LFS or release assets if the host rejects model size, and create the public remote.
+<https://github.com/AshbinSaji2006/snapshield-ai-v2-championship>
+
+Default branch: `v2-championship`. The two deployed ONNX artifacts are below GitHub’s individual file limit. Ignored release archives, raw datasets, runtime databases, environments, and build output were not committed.
 
 ## Human pre-push commands
 

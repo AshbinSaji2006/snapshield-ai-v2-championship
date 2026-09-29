@@ -44,4 +44,4 @@ The v2 deck, README, scripts, portal answers, screenshots/captions, model card, 
 
 ## Required future re-audit
 
-Rerun the claim audit after adding any public repository URL, demo-video captions, AI Hub results, ARM64 build, code signature, or portal-edited copy. Do not convert pending hardware statements into verified claims without exact-artifact and execution-unit evidence.
+The repository-URL update was re-audited without changing any technical claim. Rerun this audit after adding demo-video captions, AI Hub results, an ARM64 build, code signature, or portal-edited copy. Do not convert pending hardware statements into verified claims without exact-artifact and execution-unit evidence.

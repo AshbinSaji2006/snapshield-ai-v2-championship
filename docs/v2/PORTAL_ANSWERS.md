@@ -32,7 +32,7 @@ Core analysis runs locally after installation. URLs are parsed but never visited
 
 ## Repository
 
-`PUBLIC_REPOSITORY_URL_PENDING`
+<https://github.com/AshbinSaji2006/snapshield-ai-v2-championship>
 
 ## Demo video
 

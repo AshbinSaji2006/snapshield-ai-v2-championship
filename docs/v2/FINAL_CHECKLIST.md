@@ -25,6 +25,6 @@
 - [ ] Code-sign the Windows distribution if a certificate is available.
 - [ ] Record the real 3–4 minute demo using the supplied script.
 - [ ] Rehearse on the exact presentation laptop/display.
-- [ ] Create and review the public repository; replace `PUBLIC_REPOSITORY_URL_PENDING`.
+- [x] Create and verify the public repository: <https://github.com/AshbinSaji2006/snapshield-ai-v2-championship>.
 - [ ] Confirm current portal limits/deadline in the authenticated portal.
 - [ ] Upload and submit manually.
