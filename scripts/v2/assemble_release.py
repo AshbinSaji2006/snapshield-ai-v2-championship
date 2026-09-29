@@ -109,8 +109,9 @@ def main() -> None:
     copy(ROOT / "ml" / "v2" / "fast_calibration.json", OUT / "models" / "fast_guard" / "fast_calibration.json")
     copy(DOCS / "FINAL_CLAIM_AUDIT.md", OUT / "FINAL_CLAIM_AUDIT.md")
 
-    (OUT / "PUBLIC_REPOSITORY_URL_PENDING").write_text(
-        "Replace only after the owner creates and verifies the public repository.\n", encoding="utf-8"
+    (OUT / "PUBLIC_REPOSITORY_URL_PENDING").unlink(missing_ok=True)
+    (OUT / "PUBLIC_REPOSITORY_URL.txt").write_text(
+        "https://github.com/AshbinSaji2006/snapshield-ai-v2-championship\n", encoding="utf-8"
     )
     (OUT / "DEMO_VIDEO_PENDING").write_text(
         "A real 3–4 minute application recording requires human screen/cursor/narration capture. "
